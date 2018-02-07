@@ -20,6 +20,7 @@ var GameCtrl = /** @class */ (function (_super) {
         _this.initiate = function(req, res) {
             var userList = req.body.userList;
             var title = req.body.title;
+            var tournament = req.body.tournament;
             var userListLen = userList.length;
             var possibleSizes = {
                     traditional: [2,4,8,16,32],
@@ -31,7 +32,8 @@ var GameCtrl = /** @class */ (function (_super) {
                 _this.insert({
                     game_id: title + count,
                     user1: userList[i],
-                    user2: userList[i+1]
+                    user2: userList[i+1],
+                    tournament: tournament,
                 })
             }
         }

@@ -6,10 +6,10 @@ var mongoose = require("mongoose");
 var tournamentSchema = new mongoose.Schema({
     title: string,
     userList: [],
-    child: {
+    children: [{
       type: Schema.Types.ObjectId,
       ref: 'Game'
-    }
+    }]
 });
 var Tournament = mongoose.model('Tournament', tournamentSchema);
 exports.default = Game;

@@ -20,7 +20,7 @@ var gameSchema = new mongoose.Schema({
       type: Schema.Types.ObjectId,
       ref: 'Game'
     }],
-    winner: {
+    tournament: {
       type: Schema.Types.ObjectId,
       ref: 'Tournament'
     },

@@ -3,10 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var cat_1 = require("./controllers/cat");
 var user_1 = require("./controllers/user");
+var game_1 = require("./controllers/game");
+var tournament_1 = require("./controllers/tournament");
 function setRoutes(app) {
     var router = express.Router();
     var catCtrl = new cat_1.default();
     var userCtrl = new user_1.default();
+    var gameCtrl = new game_1.default();
+    var tournamentCtrl = new tournament_1.default();
     // Cats
     router.route('/cats').get(catCtrl.getAll);
     router.route('/cats/count').get(catCtrl.count);
@@ -22,6 +26,21 @@ function setRoutes(app) {
     router.route('/user/:id').get(userCtrl.get);
     router.route('/user/:id').put(userCtrl.update);
     router.route('/user/:id').delete(userCtrl.delete);
+    // Game
+    router.route('/games').get(gameCtrl.getAll);
+    router.route('/games/count').get(gameCtrl.count);
+    router.route('/game').post(gameCtrl.insert);
+    router.route('/game/:id').get(gameCtrl.get);
+    router.route('/game/:id').put(gameCtrl.update);
+    router.route('/game/:id').delete(gameCtrl.delete);
+    // Tournament
+    router.route('/tournaments').get(tournamentCtrl.getAll);
+    router.route('/tournaments/count').get(tournamentCtrl.count);
+    router.route('/tournament').post(tournamentCtrl.insert);
+    router.route('/tournament/:id').get(tournamentCtrl.get);
+    router.route('/tournament/:id').put(tournamentCtrl.update);
+    router.route('/tournament/:id').delete(tournamentCtrl.delete);
+    router.route('/tournament/addUser/:id').put(tournamentCtrl.addUser);
     // Apply the routes to our application with the prefix /api
     app.use('/api', router);
 }

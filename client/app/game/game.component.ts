@@ -41,6 +41,7 @@ export class GameComponent implements OnInit {
     );
   }
 
+  //Not really needed for a very simple implementation of tournament
   addGame() {
     this.GameService.addGame(this.addGameForm.value).subscribe(
       res => {
@@ -51,5 +52,6 @@ export class GameComponent implements OnInit {
       error => console.log(error)
     );
   }
+
 
 }
