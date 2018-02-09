@@ -18,7 +18,7 @@ var TournamentCtrl = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.model = tournament_1.default;
         _this.addUser = function (req, res) {
-            _this.model.update({ _id: req.params.id }, { $push: { userList: req.body } }, function (err) {
+            _this.model.update({ _id: req.params.id }, { $push: { userList: req.body.user } }, function (err) {
                 if (err) {
                     return console.error(err);
                 }

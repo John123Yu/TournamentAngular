@@ -41,6 +41,7 @@ export default function setRoutes(app) {
   router.route('/tournament/:id').get(tournamentCtrl.get);
   router.route('/tournament/:id').put(tournamentCtrl.update);
   router.route('/tournament/:id').delete(tournamentCtrl.delete);
+  router.route('/tournament/addUser/:id').put(tournamentCtrl.addUser);
 
   // Users
   router.route('/login').post(userCtrl.login);

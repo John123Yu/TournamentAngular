@@ -33,8 +33,8 @@ export class TournamentService {
     return this.http.delete(`/api/tournament/${tournament._id}`, { responseType: 'text' });
   }
 
-  addUser(user: String, tournament: Tournament): Observable<Tournament[]> {
-    return this.http.put<Tournament[]>(`/api/tournament/addUser/${tournament._id}`, user, { responseType: 'json'});
+  addUser(user: String, tournament: Tournament): Observable<string> {
+    return this.http.put<string>(`/api/tournament/addUser/${tournament._id}`, user, { responseType: 'text' });
   }
 
 }
