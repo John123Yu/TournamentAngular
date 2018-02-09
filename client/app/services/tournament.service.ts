@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Tournament } from '../shared/models/tournament.model';
+
 @Injectable()
 export class TournamentService {
 
@@ -16,24 +17,24 @@ export class TournamentService {
     return this.http.get<number>('/api/tournaments/count');
   }
 
-  addTournament(Tournament: Tournament): Observable<Tournament> {
+  addTournament(tournament: Tournament): Observable<Tournament> {
     return this.http.post<Tournament>('/api/tournament', tournament);
   }
 
-  getTournament(Tournament: Tournament): Observable<Tournament> {
+  getTournament(tournament: Tournament): Observable<Tournament> {
     return this.http.get<Tournament>(`/api/tournament/${tournament._id}`);
   }
 
-  editTournament(Tournament: Tournament): Observable<string> {
+  editTournament(tournament: Tournament): Observable<string> {
     return this.http.put(`/api/tournament/${tournament._id}`, tournament, { responseType: 'text' });
   }
 
-  deleteTournament(Tournament: Tournament): Observable<string> {
+  deleteTournament(tournament: Tournament): Observable<string> {
     return this.http.delete(`/api/tournament/${tournament._id}`, { responseType: 'text' });
   }
 
-  addUser(User: String): Observable<Tournament[]> {
-    return this.http.put<Tournament[]>(`/api/tournament/addUser/${tournament._id}`, user, { responseType: 'text'});
+  addUser(user: String, tournament: Tournament): Observable<Tournament[]> {
+    return this.http.put<Tournament[]>(`/api/tournament/addUser/${tournament._id}`, user, { responseType: 'json'});
   }
 
 }

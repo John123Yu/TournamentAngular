@@ -1,16 +1,15 @@
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Game_1 = require("./Game");
-var Game = Game_1.default;
-
 var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 var tournamentSchema = new mongoose.Schema({
-    title: string,
+    title: String,
     userList: [],
     children: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Game'
-    }]
+            type: Schema.Types.ObjectId,
+            ref: 'Game'
+        }]
 });
 var Tournament = mongoose.model('Tournament', tournamentSchema);
-exports.default = Game;
+exports.default = Tournament;
 //# sourceMappingURL=tournament.js.map

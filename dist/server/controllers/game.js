@@ -17,26 +17,25 @@ var GameCtrl = /** @class */ (function (_super) {
     function GameCtrl() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.model = game_1.default;
-        _this.initiate = function(req, res) {
+        _this.initiate = function (req, res) {
             var userList = req.body.userList;
             var title = req.body.title;
             var tournament = req.body.tournament;
             var userListLen = userList.length;
             var possibleSizes = {
-                    traditional: [2,4,8,16,32],
-                }
+                traditional: [2, 4, 8, 16, 32],
+            };
             var count = 0;
-            //Generate initial Round
-            for(var i=0; i<userListLen; i+=2) {
+            for (var i = 0; i < userListLen; i += 2) {
                 count++;
                 _this.insert({
                     game_id: title + count,
                     user1: userList[i],
-                    user2: userList[i+1],
+                    user2: userList[i + 1],
                     tournament: tournament,
-                })
+                }, res);
             }
-        }
+        };
         return _this;
     }
     return GameCtrl;

@@ -17,19 +17,19 @@ export class GameService {
     return this.http.get<number>('/api/games/count');
   }
 
-  addGame(Game: Game): Observable<Game> {
+  addGame(game: Game): Observable<Game> {
     return this.http.post<Game>('/api/game', game);
   }
 
-  getGame(Game: Game): Observable<Game> {
+  getGame(game: Game): Observable<Game> {
     return this.http.get<Game>(`/api/game/${game._id}`);
   }
 
-  editGame(Game: Game): Observable<string> {
+  editGame(game: Game): Observable<string> {
     return this.http.put(`/api/game/${game._id}`, game, { responseType: 'text' });
   }
 
-  deleteGame(Game: Game): Observable<string> {
+  deleteGame(game: Game): Observable<string> {
     return this.http.delete(`/api/game/${game._id}`, { responseType: 'text' });
   }
 }

@@ -17,6 +17,16 @@
           </a>
         </li>
         <li class="nav-item">
+          <a routerLink="/games" class="nav-link" routerLinkActive="active">
+            <i class="fa fa-list"></i> Games
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/tournaments" class="nav-link" routerLinkActive="active">
+            <i class="fa fa-list"></i> Tournaments
+          </a>
+        </li>
+        <li class="nav-item">
           <a routerLink="/login" class="nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
             <i class="fa fa-sign-in"></i> Login
           </a>

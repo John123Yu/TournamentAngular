@@ -3,6 +3,8 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RoutingModule } from './routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CatService } from './services/cat.service';
+import { GameService } from './services/game.service';
+import { TournamentService } from './services/tournament.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
@@ -42,7 +44,9 @@ import { TournamentComponent } from './tournament/tournament.component';
     AuthGuardLogin,
     AuthGuardAdmin,
     CatService,
-    UserService
+    GameService,
+    TournamentService,
+    UserService,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
