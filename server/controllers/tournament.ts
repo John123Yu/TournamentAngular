@@ -5,11 +5,11 @@ export default class TournamentCtrl extends BaseCtrl {
   model = Tournament;
 
   addUser = (req, res) => {
-            this.model.update({ _id: req.params.id }, { $push: { userList: req.body.user } }, function (err) {
-                if (err) {
-                    return console.error(err);
-                }
-                res.sendStatus(200);
-            });
-        };
+	    this.model.update({ _id: req.params.id }, { $push: { userList: req.body.user } }, function (err) {
+	        if (err) {
+	            return console.error(err);
+	        }
+	        res.json({ok: 'ok'});
+	    });
+	};
 }
