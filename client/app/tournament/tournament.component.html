@@ -20,11 +20,11 @@
         </tr>  
       </tbody>
       <tbody *ngIf="!isEditing">
-        <tr *ngFor="let tournament of tournaments">
+        <tr *ngFor="let tournament of tournaments; index as index">
           <td>{{tournament.title}}</td>
           <td>{{tournament.userList}}</td>
           <td>
-	        <form class="form-inline" [formGroup]="addUserForm" (ngSubmit)="addUser(tournament)">
+	        <form class="form-inline" [formGroup]="addUserForm" (ngSubmit)="addUser(tournament, index)">
 			  <input class="form-control mr-2" type="text" name="user" formControlName="user" placeholder="User">
 		      <button class="btn btn-primary" type="submit" [disabled]="!addUserForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
 			</form>
@@ -32,6 +32,7 @@
           <td>
             <button class="btn btn-sm btn-primary" (click)="enableEditing(tournament)"><i class="fa fa-pencil"></i> Edit</button> 
             <button class="btn btn-sm btn-danger" (click)="deleteTournament(tournament)"><i class="fa fa-trash"></i> Delete</button>
+            <button class="btn btn-sm btn-success" (click)="initiateTournament(tournament)"><i class="fa fa-pencil"></i> Initiate</button> 
           </td>
         </tr>  
       </tbody>

@@ -53,5 +53,41 @@ export class GameComponent implements OnInit {
     );
   }
 
+  enableEditing(game: Game) {
+    this.isEditing = true;
+    this.game = game;
+  }
+
+  cancelEditing() {
+    this.isEditing = false;
+    this.game = new Game();
+    this.toast.setMessage('item editing cancelled.', 'warning');
+    // reload the games to reset the editing
+    this.getGames();
+  }
+
+  editTournament(game: Game) {
+    this.gameService.editGame(game).subscribe(
+      () => {
+        this.isEditing = false;
+        this.game = game;
+        this.toast.setMessage('item edited successfully.', 'success');
+      },
+      error => console.log(error)
+    );
+  }
+
+  deleteGame(game: Game) {
+    if (window.confirm('Are you sure you want to permanently delete this item?')) {
+      this.gameService.deleteGame(game).subscribe(
+        () => {
+          const pos = this.games.map(elem => elem._id).indexOf(game._id);
+          this.games.splice(pos, 1);
+          this.toast.setMessage('item deleted successfully.', 'success');
+        },
+        error => console.log(error)
+      );
+    }
+  }
 
 }

@@ -19,21 +19,23 @@ var GameCtrl = /** @class */ (function (_super) {
         _this.model = game_1.default;
         _this.initiate = function (req, res) {
             var userList = req.body.userList;
-            var title = req.body.title;
-            var tournament = req.body.tournament;
+            var ogTitle = req.body.title;
+            var tournament = req.body._id;
             var userListLen = userList.length;
             var possibleSizes = {
                 traditional: [2, 4, 8, 16, 32],
             };
-            var count = 0;
+            var statusCode = 20 + userListLen.toString();
             for (var i = 0; i < userListLen; i += 2) {
-                count++;
+                var count = i;
+                var user1 = userList[i];
+                var user2 = userList[i + 1];
+                var title = ogTitle + count;
+                var game_id = tournament + count;
+                console.log(statusCode);
                 _this.insert({
-                    game_id: title + count,
-                    user1: userList[i],
-                    user2: userList[i + 1],
-                    tournament: tournament,
-                }, res);
+                    game_id: game_id, user1: user1, user2: user2, tournament: tournament,
+                }, res.sendStatus(statusCode));
             }
         };
         return _this;

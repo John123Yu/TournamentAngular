@@ -22,7 +22,7 @@ var TournamentCtrl = /** @class */ (function (_super) {
                 if (err) {
                     return console.error(err);
                 }
-                res.sendStatus(200);
+                res.json({ ok: 'ok' });
             });
         };
         return _this;

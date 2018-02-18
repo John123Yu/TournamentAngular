@@ -93,13 +93,24 @@ export class TournamentComponent implements OnInit {
     );
   }
 
-  addUser(tournament: Tournament) {
+  addUser(tournament: Tournament, index) {
   	this.tournamentService.addUser(this.addUserForm.value, tournament).subscribe(
   	  res => {
+  	    this.getTournaments();
   	    this.addUserForm.reset();
   	    this.toast.setMessage('item added successfully.', 'success');
   	  },
   	  error => console.log(error)
   	);
   }
+
+  initiateTournament(tournament: Tournament) {
+    this.tournamentService.initiateTournament(tournament).subscribe(
+      res => {
+        this.toast.setMessage('tournament initiated successfully.', 'success');
+      },
+      error => console.log(error)
+    );
+  }
+
 }

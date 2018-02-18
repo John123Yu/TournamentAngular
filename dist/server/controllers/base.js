@@ -32,6 +32,7 @@ var BaseCtrl = /** @class */ (function () {
                 if (err) {
                     return console.error(err);
                 }
+                console.log(res.status(200));
                 res.status(200).json(item);
             });
         };

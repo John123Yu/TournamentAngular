@@ -34,7 +34,11 @@ export class TournamentService {
   }
 
   addUser(user: String, tournament: Tournament): Observable<string> {
-    return this.http.put<string>(`/api/tournament/addUser/${tournament._id}`, user, { responseType: 'text' });
+    return this.http.put<string>(`/api/tournament/addUser/${tournament._id}`, user);
+  }
+
+  initiateTournament(tournament: Tournament): Observable<Tournament>{
+    return this.http.post<Tournament>('/api/tournament/initiate', tournament);
   }
 
 }

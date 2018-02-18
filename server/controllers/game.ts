@@ -5,7 +5,6 @@ export default class GameCtrl extends BaseCtrl {
   model = Game;
 
   initiate = (req, res) => {
-  	console.log("BODY", req.body)
     var userList = req.body.userList;
     var ogTitle = req.body.title;
     var tournament = req.body._id;
@@ -21,7 +20,6 @@ export default class GameCtrl extends BaseCtrl {
         let title = ogTitle + count
         let game_id = tournament + count;
         console.log(statusCode)
-        console.log("HEYO");
         this.insert({
             game_id, user1, user2, tournament,
         }, res.sendStatus(statusCode));
