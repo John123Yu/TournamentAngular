@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { TournamentService } from '../services/tournament.service';
+import { GameService } from '../services/game.service';
 import { ToastComponent } from '../shared/toast/toast.component';
 import { Tournament } from '../shared/models/tournament.model';
 
@@ -24,6 +25,7 @@ export class TournamentComponent implements OnInit {
   user = new FormControl('', Validators.required);
 
   constructor(private tournamentService: TournamentService,
+  			  private gameService: GameService,
               private formBuilder: FormBuilder,
               public toast: ToastComponent) { }
 
@@ -105,12 +107,28 @@ export class TournamentComponent implements OnInit {
   }
 
   initiateTournament(tournament: Tournament) {
-    this.tournamentService.initiateTournament(tournament).subscribe(
-      res => {
-        this.toast.setMessage('tournament initiated successfully.', 'success');
-      },
-      error => console.log(error)
-    );
+    console.log(tournament);
+    var userList = tournament.userList;
+    var tournament_title = tournament.title;
+    var tournament_id = tournament._id
+    console.log(tournament_id);
+    var possibleSizes = {
+            traditional: [2,4,8,16,32],
+        }
+    for(var i=0; i<userList.length; i+=2) {
+        let count = i;
+        let user1 = userList[i];
+        let user2 = userList[i+1];
+        let title = tournament_title + "#" + count
+        let game_id = tournament_id + "#" + count;
+        let game = {
+        	game_id, user1, user2, tournament_id, tournament_title
+        }
+	    this.gameService.addGame(game).subscribe(
+	      res => {
+	      },
+	      error => console.log(error)
+	    );
+    }
   }
-
 }

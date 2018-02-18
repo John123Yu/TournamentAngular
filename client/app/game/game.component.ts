@@ -35,7 +35,7 @@ export class GameComponent implements OnInit {
 
   getGames() {
     this.gameService.getGames().subscribe(
-      data => this.games = data,
+      data => {this.games = data; console.log(this.games)},
       error => console.log(error),
       () => this.isLoading = false
     );

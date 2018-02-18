@@ -8,9 +8,9 @@
     <table class="table table-bordered">
       <thead class="thead-light">
         <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Age</th>
-          <th scope="col">Weight</th>
+          <th scope="col">Tournament ID</th>
+          <th scope="col">User 1</th>
+          <th scope="col">User 2</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -21,9 +21,9 @@
       </tbody>
       <tbody *ngIf="!isEditing">
         <tr *ngFor="let game of games">
-          <td>{{game.name}}</td>
-          <td>{{game.age}}</td>
-          <td>{{game.weight}}</td>
+          <td>{{game.tournament_title}}</td>
+          <td>{{game.user1}}</td>
+          <td>{{game.user2}}</td>
           <td>
             <button class="btn btn-sm btn-primary" (click)="enableEditing(game)"><i class="fa fa-pencil"></i> Edit</button> 
             <button class="btn btn-sm btn-danger" (click)="deleteGame(game)"><i class="fa fa-trash"></i> Delete</button>

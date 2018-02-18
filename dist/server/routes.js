@@ -33,7 +33,6 @@ function setRoutes(app) {
     router.route('/tournament/:id').put(tournamentCtrl.update);
     router.route('/tournament/:id').delete(tournamentCtrl.delete);
     router.route('/tournament/addUser/:id').put(tournamentCtrl.addUser);
-    router.route('/tournament/initiate').post(gameCtrl.initiate);
     // Users
     router.route('/login').post(userCtrl.login);
     router.route('/users').get(userCtrl.getAll);

@@ -19,7 +19,8 @@ const gameSchema = new mongoose.Schema({
       type: Schema.Types.ObjectId,
       ref: 'Game'
     }],
-    tournament: {
+    tournament_title: String,
+    tournament_id: {
       type: Schema.Types.ObjectId,
       ref: 'Tournament'
     },

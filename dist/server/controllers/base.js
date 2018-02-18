@@ -24,6 +24,7 @@ var BaseCtrl = /** @class */ (function () {
         // Insert
         this.insert = function (req, res) {
             var obj = new _this.model(req.body);
+            console.log(req.body);
             obj.save(function (err, item) {
                 // 11000 is the code for duplicate key error
                 if (err && err.code === 11000) {
@@ -32,7 +33,6 @@ var BaseCtrl = /** @class */ (function () {
                 if (err) {
                     return console.error(err);
                 }
-                console.log(res.status(200));
                 res.status(200).json(item);
             });
         };
