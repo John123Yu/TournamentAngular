@@ -1,0 +1,9 @@
+.userList {
+    width: 70%;
+    word-wrap: break-word;
+    font-size: .75em;
+}
+
+.initiated {
+	color: green;
+}

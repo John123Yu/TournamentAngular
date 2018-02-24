@@ -71,6 +71,20 @@ export class TournamentComponent implements OnInit {
     );
   }
 
+  editTournamentFromForm(tournament: Tournament) {
+    console.log(tournament);
+  	tournament.userList = tournament.userList.split(',');
+  	console.log(tournament);
+    this.tournamentService.editTournament(tournament).subscribe(
+      () => {
+        this.isEditing = false;
+        this.tournament = tournament;
+        this.toast.setMessage('item edited successfully.', 'success');
+      },
+      error => console.log(error)
+    );
+  }
+
   deleteTournament(tournament: Tournament) {
     if (window.confirm('Are you sure you want to permanently delete this item?')) {
       this.tournamentService.deleteTournament(tournament).subscribe(
@@ -107,11 +121,10 @@ export class TournamentComponent implements OnInit {
   }
 
   initiateTournament(tournament: Tournament) {
-    console.log(tournament);
+    tournament.initiated = true;
     var userList = tournament.userList;
     var tournament_title = tournament.title;
     var tournament_id = tournament._id
-    console.log(tournament_id);
     var possibleSizes = {
             traditional: [2,4,8,16,32],
         }
@@ -130,5 +143,7 @@ export class TournamentComponent implements OnInit {
 	      error => console.log(error)
 	    );
     }
+    console.log(tournament)
+    this.editTournament(tournament);
   }
 }

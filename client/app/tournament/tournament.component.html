@@ -9,7 +9,7 @@
       <thead class="thead-light">
         <tr>
           <th scope="col">Title</th>
-          <th scope="col">Users</th>
+          <th scope="col" class="">Users</th>
           <th scope="col">Add User</th>
           <th scope="col">Actions</th>
         </tr>
@@ -21,8 +21,8 @@
       </tbody>
       <tbody *ngIf="!isEditing">
         <tr *ngFor="let tournament of tournaments; index as index">
-          <td>{{tournament.title}}</td>
-          <td>{{tournament.userList}}</td>
+          <td [class.initiated]="tournament.initiated">{{tournament.title}}</td>
+          <td class="userList">{{tournament.userList}}</td>
           <td>
 	        <form class="form-inline" [formGroup]="addUserForm" (ngSubmit)="addUser(tournament, index)">
 			  <input class="form-control mr-2" type="text" name="user" formControlName="user" placeholder="User">
@@ -39,8 +39,9 @@
       <tbody *ngIf="isEditing">
         <tr>
           <td colspan="4">
-            <form class="form-inline" #form="ngForm" (ngSubmit)="editTournament(tournament)">
+            <form class="form-inline" #form="ngForm" (ngSubmit)="editTournamentFromForm(tournament)">
               <input class="form-control mr-2" type="text" name="name" [(ngModel)]="tournament.title" placeholder="Title" required>
+              <input class="form-control mr-2" type="text" name="userList" [(ngModel)]="tournament.userList" placeholder="userList">
               <button class="btn btn-sm btn-primary mr-2" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
               <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
             </form>

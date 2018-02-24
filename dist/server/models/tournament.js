@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 var tournamentSchema = new mongoose.Schema({
     title: String,
     userList: [],
+    initiated: Boolean,
     children: [{
             type: Schema.Types.ObjectId,
             ref: 'Game'
