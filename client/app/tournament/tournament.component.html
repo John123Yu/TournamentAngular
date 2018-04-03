@@ -21,8 +21,10 @@
       </tbody>
       <tbody *ngIf="!isEditing">
         <tr *ngFor="let tournament of tournaments; index as index">
-          <td [class.initiated]="tournament.initiated">{{tournament.title}}</td>
-          <td class="userList">{{tournament.userList}}</td>
+          <td [class.initiated]="tournament.initiated">{{tournament.title}} {{tournament._id}}</td>
+          <a [routerLink]="['/tournament', tournament._id]">
+            <td class="userList">{{tournament.userList}}</td>
+          </a>
           <td>
 	        <form class="form-inline" [formGroup]="addUserForm" (ngSubmit)="addUser(tournament, index)">
 			  <input class="form-control mr-2" type="text" name="user" formControlName="user" placeholder="User">

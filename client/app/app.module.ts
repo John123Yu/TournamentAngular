@@ -20,6 +20,8 @@ import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { GameComponent } from './game/game.component';
 import { TournamentComponent } from './tournament/tournament.component';
+import { TournamentSingleComponent } from './tournament-single/tournament-single.component';
+import { RoundComponent } from './round/round.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { TournamentComponent } from './tournament/tournament.component';
     AdminComponent,
     NotFoundComponent,
     GameComponent,
-    TournamentComponent
+    TournamentComponent,
+    TournamentSingleComponent,
+    RoundComponent
   ],
   imports: [
     RoutingModule,

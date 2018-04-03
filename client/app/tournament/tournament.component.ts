@@ -73,7 +73,7 @@ export class TournamentComponent implements OnInit {
 
   editTournamentFromForm(tournament: Tournament) {
     console.log(tournament);
-  	tournament.userList = tournament.userList.split(',');
+  	//tournament.userList = tournament.userList.split(',');
   	console.log(tournament);
     this.tournamentService.editTournament(tournament).subscribe(
       () => {

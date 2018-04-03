@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { CatsComponent } from './cats/cats.component';
 import { GameComponent } from './game/game.component';
 import { TournamentComponent } from './tournament/tournament.component';
+import { TournamentSingleComponent } from './tournament-single/tournament-single.component'
 import { AboutComponent } from './about/about.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'cats', component: CatsComponent },
   { path: 'games', component: GameComponent },
   { path: 'tournaments', component: TournamentComponent },
+  { path: 'tournament/:id', component: TournamentSingleComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
