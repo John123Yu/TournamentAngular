@@ -20,6 +20,7 @@ function setRoutes(app) {
     router.route('/cat/:id').delete(catCtrl.delete);
     // Game
     router.route('/games').get(gameCtrl.getAll);
+    router.route('/games/:id').get(gameCtrl.getGames_by_tournament_id);
     router.route('/games/count').get(gameCtrl.count);
     router.route('/game').post(gameCtrl.insert);
     router.route('/game/:id').get(gameCtrl.get);

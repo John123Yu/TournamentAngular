@@ -129,16 +129,17 @@ export class TournamentComponent implements OnInit {
             traditional: [2,4,8,16,32],
         }
     for(var i=0; i<userList.length; i+=2) {
-        let count = i;
-        let user1 = userList[i];
-        let user2 = userList[i+1];
-        let title = tournament_title + "#" + count
-        let game_id = tournament_id + "#" + count;
-        let game = {
+      let count = i;
+      let user1 = userList[i];
+      let user2 = userList[i+1];
+      let title = tournament_title + "#" + count
+      let game_id = tournament_id + "#" + count;
+      let game = {
         	game_id, user1, user2, tournament_id, tournament_title
-        }
+      }
 	    this.gameService.addGame(game).subscribe(
 	      res => {
+          tournament.children.push(game_id);
 	      },
 	      error => console.log(error)
 	    );

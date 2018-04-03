@@ -17,6 +17,17 @@ var GameCtrl = /** @class */ (function (_super) {
     function GameCtrl() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.model = game_1.default;
+        _this.getGames_by_tournament_id = function (req, res) {
+            console.log(req.params);
+            _this.model.find({
+                tournament_id: req.params.id
+            }, function (err, games) {
+                if (err) {
+                    return console.error(err);
+                }
+                res.json(games);
+            });
+        };
         return _this;
     }
     return GameCtrl;

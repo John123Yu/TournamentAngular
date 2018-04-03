@@ -21,7 +21,6 @@ abstract class BaseCtrl {
   // Insert
   insert = (req, res) => {
     const obj = new this.model(req.body);
-    console.log(req.body);
     obj.save((err, item) => {
       // 11000 is the code for duplicate key error
       if (err && err.code === 11000) {
@@ -44,6 +43,7 @@ abstract class BaseCtrl {
 
   // Update by id
   update = (req, res) => {
+    console.log("heyo ", req.body)
     this.model.findOneAndUpdate({ _id: req.params.id }, req.body, (err) => {
       if (err) { return console.error(err); }
       res.sendStatus(200);

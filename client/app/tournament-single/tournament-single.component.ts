@@ -16,6 +16,7 @@ import { ToastComponent } from '../shared/toast/toast.component';
 export class TournamentSingleComponent implements OnInit, OnDestroy {
 
   tournament = new Tournament();
+  games = [];
   isLoading = true;
   isEditing = false;
   route$;
@@ -40,6 +41,27 @@ export class TournamentSingleComponent implements OnInit, OnDestroy {
 
   getTournament(id) {
   	console.log("Id: ",id)
+  	this.tournament._id = id;
+  	this.tournamentService.getTournament(this.tournament).subscribe(
+      data => {
+      	this.tournament = data;
+      	console.log(this.tournament);
+      },
+      error => console.log(error),
+      () => this.isLoading = false
+    );
+    this.getGames_by_tournament_id(id);
+  }
+
+  getGames_by_tournament_id(id) {
+    this.gameService.getGames_by_tournament_id(id).subscribe(
+      data => {
+        this.games = data;
+        console.log(this.games);
+      },
+      error => console.log(error),
+      () => this.isLoading = false
+    );
   }
 
   ngOnDestroy() {

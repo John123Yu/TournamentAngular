@@ -13,6 +13,10 @@ export class GameService {
     return this.http.get<Game[]>('/api/games');
   }
 
+  getGames_by_tournament_id(id): Observable<Game[]> {
+    return this.http.get<Game[]>(`/api/games/${id}`);
+  }
+
   countGames(): Observable<number> {
     return this.http.get<number>('/api/games/count');
   }
