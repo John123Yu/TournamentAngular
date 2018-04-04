@@ -41,7 +41,10 @@ export class TournamentComponent implements OnInit {
 
   getTournaments() {
     this.tournamentService.getTournaments().subscribe(
-      data => this.tournaments = data,
+      data => {
+      this.tournaments = data
+      console.log(data)
+      },
       error => console.log(error),
       () => this.isLoading = false
     );
@@ -126,23 +129,30 @@ export class TournamentComponent implements OnInit {
     var tournament_title = tournament.title;
     var tournament_id = tournament._id
     var possibleSizes = {
-            traditional: [2,4,8,16,32],
+            traditional: {
+              2: 1,
+              4: 2,
+              8: 3,
+              16: 4,
+              32: 5
+            }
         }
-    for(var i=0; i<userList.length; i+=2) {
-      let count = i;
-      let user1 = userList[i];
-      let user2 = userList[i+1];
-      let title = tournament_title + "#" + count
-      let game_id = tournament_id + "#" + count;
-      let game = {
-        	game_id, user1, user2, tournament_id, tournament_title
-      }
-	    this.gameService.addGame(game).subscribe(
-	      res => {
-          tournament.children.push(game_id);
-	      },
-	      error => console.log(error)
-	    );
+    for(let round=1; round<=possibleSizes.traditional[userList.length]; round++) {
+      for(let i=1; i<=userList.length/round; i+=2) {
+        let user1 = round == 1 ? userList[i-1] : undefined;
+        let user2 = round == 1 ? userList[i] : undefined;
+        let title = tournament_title + "game#" + i + "round#" + round;
+        let game_id = tournament_id + "game#" + i + "round#" + round;
+        let game = {
+          	game_id, user1, user2, tournament_id, tournament_title, round
+        }
+  	    this.gameService.addGame(game).subscribe(
+  	      res => {
+            tournament.children.push(game_id);
+  	      },
+  	      error => console.log(error)
+  	    );
+      } 
     }
     console.log(tournament)
     this.editTournament(tournament);

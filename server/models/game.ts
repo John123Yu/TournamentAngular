@@ -7,6 +7,7 @@ const gameSchema = new mongoose.Schema({
     user1: String,
     user2: String,
     winner: String,
+    round: String,
     parent: {
       type: Schema.Types.ObjectId,
       ref: 'Game'

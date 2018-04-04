@@ -1,3 +1,12 @@
-<p>
-  tournament-single works!
-</p>
+<app-loading [condition]="isLoading"></app-loading>
+<app-toast [message]="toast.message"></app-toast>
+
+<div>
+	<p>{{tournament.title}}</p>
+	<ul *ngFor="let game of games; index as index">
+		<button class="btn btn-info"><li>{{ game.user1 }}</li></button>
+		<br>
+		<button class="btn btn-info"><li>{{ game.user2 }}</li></button>
+	</ul>
+</div>
+
