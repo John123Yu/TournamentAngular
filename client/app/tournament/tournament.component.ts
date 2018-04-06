@@ -138,13 +138,15 @@ export class TournamentComponent implements OnInit {
             }
         }
     for(let round=1; round<=possibleSizes.traditional[userList.length]; round++) {
-      for(let i=1; i<=userList.length/round; i+=2) {
-        let user1 = round == 1 ? userList[i-1] : undefined;
-        let user2 = round == 1 ? userList[i] : undefined;
+      let user_counter = 1;
+      for(let i=1; i<=userList.length/round/2; i+=1) {
+        let user1 = round == 1 ? userList[user_counter-1] : undefined;
+        let user2 = round == 1 ? userList[user_counter] : undefined;
         let title = tournament_title + "game#" + i + "round#" + round;
         let game_id = tournament_id + "game#" + i + "round#" + round;
+        let game_of_round = i;
         let game = {
-          	game_id, user1, user2, tournament_id, tournament_title, round
+          	game_id, user1, user2, tournament_id, tournament_title, round, game_of_round
         }
   	    this.gameService.addGame(game).subscribe(
   	      res => {
@@ -152,6 +154,7 @@ export class TournamentComponent implements OnInit {
   	      },
   	      error => console.log(error)
   	    );
+        user_counter += 2;
       } 
     }
     console.log(tournament)

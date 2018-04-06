@@ -5,4 +5,14 @@ ul {
 .btn {
 	margin-bottom: .3em;
 	min-width: 10em;
+	min-height: 4em;
+}
+
+.round_div {
+	display: inline-block;
+}
+
+.game_div {
+	border: 1px solid black;
+	padding: 1em;
 }

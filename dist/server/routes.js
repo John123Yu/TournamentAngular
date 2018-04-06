@@ -26,6 +26,7 @@ function setRoutes(app) {
     router.route('/game/:id').get(gameCtrl.get);
     router.route('/game/:id').put(gameCtrl.update);
     router.route('/game/:id').delete(gameCtrl.delete);
+    router.route('/game/next_round').post(gameCtrl.update_next_round_game);
     // Tournaments
     router.route('/tournaments').get(tournamentCtrl.getAll);
     router.route('/tournaments/count').get(tournamentCtrl.count);

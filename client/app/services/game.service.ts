@@ -36,4 +36,8 @@ export class GameService {
   deleteGame(game: Game): Observable<string> {
     return this.http.delete(`/api/game/${game._id}`, { responseType: 'text' });
   }
+
+  update_next_round_game(game: Game): Observable<string> {
+    return this.http.post(`/api/game/next_round`, game, { responseType: 'text' });
+  }
 }

@@ -22,6 +22,7 @@ import { GameComponent } from './game/game.component';
 import { TournamentComponent } from './tournament/tournament.component';
 import { TournamentSingleComponent } from './tournament-single/tournament-single.component';
 import { RoundComponent } from './round/round.component';
+import { RoundPipe } from './round.pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { RoundComponent } from './round/round.component';
     GameComponent,
     TournamentComponent,
     TournamentSingleComponent,
-    RoundComponent
+    RoundComponent,
+    RoundPipe
   ],
   imports: [
     RoutingModule,

@@ -28,6 +28,27 @@ var GameCtrl = /** @class */ (function (_super) {
                 res.json(games);
             });
         };
+        _this.update_next_round_game = function (req, res) {
+            console.log("HERE :", req.body);
+            _this.model.findOne({
+                game_id: req.body.game_id
+            }, function (err, game) {
+                if (err) {
+                    return console.error(err);
+                }
+                if (game) {
+                    if (req.body.user1)
+                        game.user1 = req.body.user1;
+                    if (req.body.user2)
+                        game.user2 = req.body.user2;
+                    game.save();
+                    res.sendStatus(200);
+                }
+                else {
+                    return console.error('game not found');
+                }
+            });
+        };
         return _this;
     }
     return GameCtrl;

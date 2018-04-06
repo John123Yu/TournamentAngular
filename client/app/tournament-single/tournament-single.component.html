@@ -2,11 +2,16 @@
 <app-toast [message]="toast.message"></app-toast>
 
 <div>
-	<p>{{tournament.title}}</p>
-	<ul *ngFor="let game of games; index as index">
-		<button class="btn btn-info"><li>{{ game.user1 }}</li></button>
-		<br>
-		<button class="btn btn-info"><li>{{ game.user2 }}</li></button>
-	</ul>
+  <p>{{tournament.title}}</p>
+	<div *ngFor="let number of rounds" class="round_div">
+	  <ul>
+		<li *ngFor="let game of games">
+		  <div [hidden]="game.round != number" class="game_div">
+			<button (click)="select_winner(game, game.user1)" class="btn btn-info">{{ game.user1 }}</button>
+			<br>
+			<button (click)="select_winner(game, game.user2)" class="btn btn-info">{{ game.user2 }}</button>
+		  </div>
+		</li>
+	  </ul>	
+  </div>
 </div>
-
