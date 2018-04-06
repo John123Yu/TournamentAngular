@@ -24,6 +24,23 @@ export class TournamentSingleComponent implements OnInit, OnDestroy {
   route$;
   id;
 
+  constructor(private tournamentService: TournamentService,
+          private gameService: GameService,
+              private formBuilder: FormBuilder,
+              public toast: ToastComponent,
+              private route : ActivatedRoute) { }
+
+  ngOnInit() {
+    this.route$ = this.route.params.subscribe(
+            (params : Params) => {
+                this.id = params["id"];
+            }
+        );
+
+    this.getTournament(this.id);
+    
+  }
+
   select_winner(game, winner) {
     game.winner = winner;
     this.gameService.editGame(game).subscribe(
@@ -41,36 +58,32 @@ export class TournamentSingleComponent implements OnInit, OnDestroy {
     };
 
     next_round_game.game_id = game.tournament_id + "game#" + Math.ceil(game.game_of_round/2) + "round#" + (game.round + 1);
-    if(game.game_of_round / 2 === 1)
+    console.log(game.game_of_round)
+    if(game.game_of_round % 2 === 0) 
       next_round_game.user2 = game.winner
-    else
+    else 
       next_round_game.user1 = game.winner
+    this.update_next_round_game(next_round_game)
+  }
 
-    this.gameService.update_next_round_game(next_round_game).subscribe(
+  update_next_round_game(game) {
+    this.gameService.update_next_round_game(game).subscribe(
       () => {
         this.isEditing = false;
         this.toast.setMessage('next round game updated successfully.', 'success');
+        var game_holder = this.games.filter( x => {
+          return game.game_id == x.game_id
+        })[0];
+        console.log(game_holder)
+        console.log(game)
+        if(game.user1)
+          game_holder.user1 = game.user1;
+        else
+          game_holder.user2 = game.user2;
+        console.log(this.games)
       },
       error => console.log(error)
     );
-
-  }
-
-  constructor(private tournamentService: TournamentService,
-  			  private gameService: GameService,
-              private formBuilder: FormBuilder,
-              public toast: ToastComponent,
-              private route : ActivatedRoute) { }
-
-  ngOnInit() {
-  	this.route$ = this.route.params.subscribe(
-            (params : Params) => {
-                this.id = params["id"];
-            }
-        );
-
-    this.getTournament(this.id);
-    
   }
 
   getTournament(id) {
